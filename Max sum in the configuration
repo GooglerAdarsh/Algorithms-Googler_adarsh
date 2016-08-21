@@ -1,0 +1,20 @@
+//Googler_adarsh_IIITA
+int max_sum(int arr[],int n)
+{
+    long long sum=0,next=0,result=0,curr_sum=0;
+	  for(long long  i=0;i<n;i++)
+		  sum+=arr[i];
+   		  
+   	  for(long long  i=0;i<n;i++)
+        curr_sum+=i*arr[i];
+       // cout<<sum<<curr_sum;
+        result=curr_sum;
+   	   for(long long  i=1;i<n;i++)
+   	   {
+   	   	  next=curr_sum-sum+arr[i-1]+(n-1)*arr[i-1];
+   	   	  curr_sum=next;
+   	   	  if(next>result)
+   	   	  result=next;
+   	   }
+   	return result;
+}
