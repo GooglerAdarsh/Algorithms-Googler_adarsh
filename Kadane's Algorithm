@@ -1,0 +1,35 @@
+#include<iostream>
+#include<algorithm>
+using namespace std;
+int max_sum(long long arr[9999],long long n){
+	long long i=0,l=0,sum=0,prev=0;
+	for(i=0;i<n;i++){
+		prev+=arr[i];
+		if(prev<0)
+		prev=0;
+		if(sum<=prev){
+			sum=prev;
+		}
+	}
+	return sum;
+}
+int main()
+{
+	long long t;
+	cin>>t;
+	while(t--){
+		long long n,arr[99999],l=0,i=0;
+		cin>>n;
+		for(i=0;i<n;i++)
+		cin>>arr[i];
+		l=max_sum(arr,n);
+		if(l>0)
+	 cout<<l<<endl;
+	 else 
+	 {
+	 	sort(arr,arr+n);
+	    cout<<arr[n-1]<<endl;
+     }
+	}
+	return 0;
+}
