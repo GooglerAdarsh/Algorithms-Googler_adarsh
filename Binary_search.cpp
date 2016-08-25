@@ -4,7 +4,8 @@ using namespace std;
 ll arr[99666],n;
 ll BST(ll a,ll low ,ll high){
 	ll mid;
-	mid=(low + high)/2;
+	mid=(low + high)/2
+	if(low<=high){
 	if(a<arr[0])
 		return -1;
 	else if(a>arr[n-1])
@@ -15,6 +16,7 @@ ll BST(ll a,ll low ,ll high){
 		BST(a,mid+1,high);
 	else if(a<arr[mid])
 		BST(a,low,mid-1);
+}
 }
 int main(){
 	ll a,j;
