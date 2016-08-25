@@ -25,7 +25,7 @@ void dks(ll src){
 		}
     }
  for(ll i=0;i<=n;i++)
-cout<<" Min_distance_of_"<<i<<"_node_from_src_is_"<<dst[i]<<" ";
+cout<<" Min_distance_of "<<i<<" th_node_from_src_is_"<<dst[i]<<endl;
 }
 int main(){
 	ll w,e,src,u,v;
