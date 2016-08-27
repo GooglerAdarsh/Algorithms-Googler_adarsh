@@ -1,3 +1,6 @@
+//Googler_adarsh_IIITA
+//it_works_when _array_is_sorted 
+//else see_BST
 #include<bits/stdc++.h>
 #define ll long long 
 using namespace std;
@@ -25,10 +28,6 @@ int main(){
 	cout<<"Enter elements:"<<endl;
 	for(ll i=0;i<n;i++)
 		cin>>arr[i];
-	sort(arr,arr+n);
-	for(ll i=0;i<n;i++)
-		cout<<arr[i]<<" ";
-	cout<<endl;
 	cout<<"Enter the element to be search :"<<endl;
 	cin>>a;
 	j=BST(a,0,n);
