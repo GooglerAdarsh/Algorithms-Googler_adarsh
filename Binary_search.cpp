@@ -1,6 +1,6 @@
 //Googler_adarsh_IIITA
 //it_works_when _array_is_sorted 
-//else see_BST
+//else see_Binary_search_tree
 #include<bits/stdc++.h>
 #define ll long long 
 using namespace std;
