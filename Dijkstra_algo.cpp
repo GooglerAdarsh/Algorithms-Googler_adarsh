@@ -5,7 +5,7 @@
 #define pb(a) push_back(a);
 using namespace std;
 int arr[888][67];
-queue<ll> q;
+priority_queue<ll> q;
 ll n,dst[99999],s;
 void dks(ll src){
 	q.push(src);
