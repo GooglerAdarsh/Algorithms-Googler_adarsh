@@ -3,11 +3,11 @@ using namespace std;
 void countk(int arr[99][99],int u,int v,int k,int n)
 {
  int a[n][n][n];
- for(int e=0;e<=k;e++)
+ for(int e=0;e<=k;e++) //for number of edge 
  {
-  for(int i=0;i<n;i++)
+  for(int i=0;i<n;i++)// from source 
    {
-     for(int j=0;j<n;j++)
+     for(int j=0;j<n;j++)// to destination 
      {
         a[i][j][e]=0;
         if(e==0 && i==j)
