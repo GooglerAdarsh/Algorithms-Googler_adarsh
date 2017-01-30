@@ -87,10 +87,11 @@ void print_BFS(struct node *temp,int h){
     }
 }
 void Left_view(struct node *temp,int h1,int *level){
+    //cout<<*level<<"l"<<" "<<h1<<"h"<<" ";
     if(temp==NULL)
         return ;
     if(*level<h1){
-        cout<<temp->data<<" ";
+       cout<<temp->data<<endl;
           *level=h1;
     }
       Left_view(temp->left,h1+1,level);
@@ -106,7 +107,26 @@ void right_view(struct node *temp,int h1,int *level){
       right_view(temp->right,h1+1,level);
       right_view(temp->left,h1+1,level);
 }
+void root_to_leaf(struct node *temp,queue<int> st){
+    if(temp->left==NULL && temp->right==NULL)
+    {
+         st.push(temp->data);
+        while(!st.empty()){
+            cout<<st.front()<<" ";
+            st.pop();
+        }
+        cout<<endl;
+    }
+    else{
+             st.push(temp->data);
+             if(temp->left!=NULL)
+         root_to_leaf(temp->left,st);
+                 if(temp->right!=NULL)
+         root_to_leaf(temp->right,st);
+    }
+}
 int main(){
+    queue<int> st;
 struct node *root=NULL;
     while(1)
     {
@@ -163,8 +183,10 @@ struct node *root=NULL;
     cout<<endl<<"Left view"<<endl;
     int m=0;
     Left_view(root,1,&m);
-cout<<endl<<"right view"<<endl;
+    cout<<endl<<"right view"<<endl;
     m=0;
     right_view(root,1,&m);
+    cout<<endl<<"root-to-leaf"<<endl;
+    root_to_leaf(root,st);
 return 0;
 }
