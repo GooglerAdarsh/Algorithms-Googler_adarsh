@@ -131,6 +131,30 @@ void root_to_leaf(struct node *temp,queue<int> st){
          root_to_leaf(temp->right,st);
     }
 }
+void spiral(struct node *temp,int level,bool it){
+    if(temp==NULL)
+        return;
+    if(level==1)
+        cout<<temp->data<<" ";
+     else if(level>1){
+        if(it){
+            spiral(temp->left,level-1,it);
+            spiral(temp->right,level-1,it);
+        }
+        else{
+               spiral(temp->right,level-1,it);
+               spiral(temp->left,level-1,it);
+       }
+     }
+}
+void spiral_trevarsel(struct node *temp){
+    bool it=false;
+    for(int i=1;i<=print_hight(temp);i++)
+    {
+        spiral(temp,i,it);
+        it=!it;
+    }
+}
 int main(){
     queue<int> st;
 struct node *root=NULL;
@@ -196,5 +220,7 @@ struct node *root=NULL;
     right_view(root,1,&m);
     cout<<endl<<"root-to-leaf"<<endl;
     root_to_leaf(root,st);
+     cout<<endl<<"Spiral_view"<<endl;
+     spiral_trevarsel(root);
 return 0;
 }
