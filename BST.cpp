@@ -1,3 +1,6 @@
+//ADARSH_TIWARI
+//B.Tech (Information Technology ) 3rd year
+// Indian Institute Of Information Technology , Allahabad
 #include<bits/stdc++.h>
 using namespace std;
 struct node {
@@ -5,6 +8,7 @@ int data;
 struct node *left;
 struct node *right;
 };
+int cnt=0;
 queue<int>st;
 map<int,bool>mp;
 struct node *temp1=NULL;
@@ -57,6 +61,7 @@ void print_leaf(struct node *temp){
     while(!st.empty()){
            cout<<st.front()<<endl;
            st.pop();
+           cnt++;
         }
 }
 int  print_hight(struct node *temp){
@@ -110,6 +115,7 @@ void right_view(struct node *temp,int h1,int *level){
 void root_to_leaf(struct node *temp,queue<int> st){
     if(temp->left==NULL && temp->right==NULL)
     {
+        //cnt++;
          st.push(temp->data);
         while(!st.empty()){
             cout<<st.front()<<" ";
@@ -176,6 +182,8 @@ struct node *root=NULL;
     print_DFS(root);
     cout<<endl<<"printing Leaf node"<<endl;
     print_leaf(root);
+    cout<<endl<<"Number Leaf node"<<endl;
+    cout<<cnt<<endl;
     cout<<endl<<"printing Hight of tree"<<endl;
     cout<<print_hight(root)<<endl;
     cout<<endl<<"BFS traversal"<<endl;
