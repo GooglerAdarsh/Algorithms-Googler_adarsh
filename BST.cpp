@@ -170,6 +170,25 @@ int max1_tree(struct node *temp){
         data1=r;
     return data1;
 }
+
+//NOT FOR Binary Search Tree (because in BST the node->right->data
+//will always greater than than the root->data so never (node->data!=(node->left->data + node->right->data))
+//Only for Binary tree
+/*int Children_sum(struct node *temp){
+    int l,r;
+    if(temp==NULL ||temp->left==NULL && temp->right==NULL)
+        return 1;
+    else{
+     if(temp->left)
+      l=temp->left->data;
+     if(temp->right)
+      r=temp->right->data;
+      if((temp->data)==(l+r)&&Children_sum(temp->left)&&Children_sum(temp->right))
+        return 1;
+      else
+        return 0;
+     }
+}*/
 int main(){
     queue<int> st;
 struct node *root=NULL;
@@ -239,5 +258,10 @@ struct node *root=NULL;
      spiral_trevarsel(root);
      cout<<endl<<"Maximum_in_tree"<<endl;
      cout<<max1_tree(root)<<endl;
+  /*   cout<<endl<<"Children_sum"<<endl;
+      if(Children_sum(root))
+            cout<<"true"<<endl;
+      else
+        cout<<"false"<<endl; */
 return 0;
 }
