@@ -2,6 +2,7 @@
 //B.Tech (Information Technology ) 3rd year
 // Indian Institute Of Information Technology , Allahabad
 #include<bits/stdc++.h>
+#include<limits.h>
 using namespace std;
 struct node {
 int data;
@@ -53,6 +54,8 @@ void print_DFS(struct node *temp){
         return ;
         if(temp->left==NULL&&temp->right==NULL)
         st.push(temp->data);
+
+
     cout<<temp->data<<" ";
     print_DFS(temp->left);
     print_DFS(temp->right);
@@ -155,6 +158,18 @@ void spiral_trevarsel(struct node *temp){
         it=!it;
     }
 }
+int max1_tree(struct node *temp){
+    if(temp==NULL)
+        return 0;
+    int data1=temp->data;
+    int l=max1_tree(temp->left);
+    int r=max1_tree(temp->right);
+    if(l>data1)
+        data1=l;
+    if(r>data1)
+        data1=r;
+    return data1;
+}
 int main(){
     queue<int> st;
 struct node *root=NULL;
@@ -222,5 +237,7 @@ struct node *root=NULL;
     root_to_leaf(root,st);
      cout<<endl<<"Spiral_view"<<endl;
      spiral_trevarsel(root);
+     cout<<endl<<"Maximum_in_tree"<<endl;
+     cout<<max1_tree(root)<<endl;
 return 0;
 }
