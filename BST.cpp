@@ -189,15 +189,22 @@ int max1_tree(struct node *temp){
         return 0;
      }
 }*/
-void Mirror_image(struct node *temp)
+void mirror_image(struct node*temp){
+  if(temp==NULL)
+    return ;
+    mirror_image(temp->left);
+   mirror_image(temp->right);
+    swap(temp->left,temp->right);
+}
+
+void print_Mirror_image(struct node *temp)
 {
       if(temp==NULL)
            return ;
         cout<<temp->data<<" ";
-        print1(temp->left);
-        print1(temp->right);
+        print_Mirror_image(temp->left);
+        print_Mirror_image(temp->right);
 }
-
 int main(){
     queue<int> st;
 struct node *root=NULL;
@@ -272,6 +279,7 @@ struct node *root=NULL;
             cout<<"true"<<endl;
       else
         cout<<"false"<<endl; */
-     Mirror_image(root);
+        mirror_image(root);
+     print_Mirror_image(root);
 return 0;
 }
