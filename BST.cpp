@@ -5,9 +5,9 @@
 #include<limits.h>
 using namespace std;
 struct node {
-int data;
-struct node *left;
-struct node *right;
+    int data;
+    struct node *left;
+    struct node *right;
 };
 int cnt=0;
 queue<int>st;
@@ -19,41 +19,41 @@ struct node *new_node(int da){
     node1->data=da;
     node1->left=NULL;
     node1->right=NULL;
-return (node1);
+    return (node1);
 };
 void print_INORDER(struct node *temp){
     if(temp==NULL)
-        return ;
-     print_INORDER(temp->left);
-     cout<< temp->data <<" ";
-     print_INORDER(temp->right);
+    return ;
+    print_INORDER(temp->left);
+    cout<< temp->data <<" ";
+    print_INORDER(temp->right);
 }
 void print_PREORDER(struct node *temp){
-     if(temp==NULL)
-        return ;
-     cout<<temp->data<<" ";
-     print_PREORDER(temp->left);
-     print_PREORDER(temp->right);
+    if(temp==NULL)
+    return ;
+    cout<<temp->data<<" ";
+    print_PREORDER(temp->left);
+    print_PREORDER(temp->right);
 
 }
 void print_POSTORDER(struct node *temp){
-     if(temp==NULL)
-        return ;
-     print_POSTORDER(temp->left);
-     print_POSTORDER(temp->right);
-     cout<<temp->data<<" ";
+    if(temp==NULL)
+    return ;
+    print_POSTORDER(temp->left);
+    print_POSTORDER(temp->right);
+    cout<<temp->data<<" ";
 }
 int sizeoftree(struct node *temp){
     if(temp==NULL)
-        return 0;
+    return 0;
     else
-      return  (sizeoftree(temp->left)+1+sizeoftree(temp->right));
+        return  (sizeoftree(temp->left)+1+sizeoftree(temp->right));
 }
 void print_DFS(struct node *temp){
     if(temp==NULL)
-        return ;
-        if(temp->left==NULL&&temp->right==NULL)
-        st.push(temp->data);
+    return ;
+    if(temp->left==NULL&&temp->right==NULL)
+    st.push(temp->data);
 
 
     cout<<temp->data<<" ";
@@ -62,30 +62,41 @@ void print_DFS(struct node *temp){
 }
 void print_leaf(struct node *temp){
     while(!st.empty()){
-           cout<<st.front()<<endl;
-           st.pop();
-           cnt++;
-        }
+        cout<<st.front()<<endl;
+        st.pop();
+        cnt++;
+    }
 }
 int  print_hight(struct node *temp){
     if(temp==NULL)
-        return 0;
-int l=print_hight(temp->left);
-int r=print_hight(temp->right);
-if(l>r)
+    return 0;
+    int l=print_hight(temp->left);
+    int r=print_hight(temp->right);
+    if(l>r)
     return (l+1);
-else
-    return (r+1);
+    else
+        return (r+1);
+}
+//%not1()
+int  print_hight1(struct node *temp){
+    if(temp==NULL)
+    return 0;
+    int l=print_hight1(temp->left);
+    int r=print_hight1(temp->right);
+    if(l<r)
+    return (l+1);
+    else
+        return (r+1);
 }
 void printbfs(struct node *temp,int h){
     if(temp==NULL)
     return ;
     if(h==1){
-          cout<<temp->data<<" ";
+        cout<<temp->data<<" ";
     }
     else{
-             printbfs(temp->left,h-1);
-             printbfs(temp->right,h-1);
+        printbfs(temp->left,h-1);
+        printbfs(temp->right,h-1);
     }
 }
 void print_BFS(struct node *temp,int h){
@@ -97,29 +108,29 @@ void print_BFS(struct node *temp,int h){
 void Left_view(struct node *temp,int h1,int *level){
     //cout<<*level<<"l"<<" "<<h1<<"h"<<" ";
     if(temp==NULL)
-        return ;
+    return ;
     if(*level<h1){
-       cout<<temp->data<<endl;
-          *level=h1;
+        cout<<temp->data<<endl;
+        *level=h1;
     }
-      Left_view(temp->left,h1+1,level);
-      Left_view(temp->right,h1+1,level);
+    Left_view(temp->left,h1+1,level);
+    Left_view(temp->right,h1+1,level);
 }
 void right_view(struct node *temp,int h1,int *level){
     if(temp==NULL)
-        return ;
+    return ;
     if(*level<h1){
         cout<<temp->data<<" ";
-          *level=h1;
+        *level=h1;
     }
-      right_view(temp->right,h1+1,level);
-      right_view(temp->left,h1+1,level);
+    right_view(temp->right,h1+1,level);
+    right_view(temp->left,h1+1,level);
 }
 void root_to_leaf(struct node *temp,queue<int> st){
     if(temp->left==NULL && temp->right==NULL)
     {
         //cnt++;
-         st.push(temp->data);
+        st.push(temp->data);
         while(!st.empty()){
             cout<<st.front()<<" ";
             st.pop();
@@ -127,28 +138,28 @@ void root_to_leaf(struct node *temp,queue<int> st){
         cout<<endl;
     }
     else{
-             st.push(temp->data);
-             if(temp->left!=NULL)
-         root_to_leaf(temp->left,st);
-                 if(temp->right!=NULL)
-         root_to_leaf(temp->right,st);
+        st.push(temp->data);
+        if(temp->left!=NULL)
+        root_to_leaf(temp->left,st);
+        if(temp->right!=NULL)
+        root_to_leaf(temp->right,st);
     }
 }
 void spiral(struct node *temp,int level,bool it){
     if(temp==NULL)
-        return;
+    return;
     if(level==1)
-        cout<<temp->data<<" ";
-     else if(level>1){
+    cout<<temp->data<<" ";
+    else if(level>1){
         if(it){
             spiral(temp->left,level-1,it);
             spiral(temp->right,level-1,it);
         }
         else{
-               spiral(temp->right,level-1,it);
-               spiral(temp->left,level-1,it);
-       }
-     }
+            spiral(temp->right,level-1,it);
+            spiral(temp->left,level-1,it);
+        }
+    }
 }
 void spiral_trevarsel(struct node *temp){
     bool it=false;
@@ -160,14 +171,14 @@ void spiral_trevarsel(struct node *temp){
 }
 int max1_tree(struct node *temp){
     if(temp==NULL)
-        return 0;
+    return 0;
     int data1=temp->data;
     int l=max1_tree(temp->left);
     int r=max1_tree(temp->right);
     if(l>data1)
-        data1=l;
+    data1=l;
     if(r>data1)
-        data1=r;
+    data1=r;
     return data1;
 }
 
@@ -175,73 +186,103 @@ int max1_tree(struct node *temp){
 //will always greater than than the root->data so never (node->data!=(node->left->data + node->right->data))
 //Only for Binary tree
 /*int Children_sum(struct node *temp){
-    int l,r;
-    if(temp==NULL ||temp->left==NULL && temp->right==NULL)
-        return 1;
-    else{
-     if(temp->left)
-      l=temp->left->data;
-     if(temp->right)
-      r=temp->right->data;
-      if((temp->data)==(l+r)&&Children_sum(temp->left)&&Children_sum(temp->right))
-        return 1;
-      else
-        return 0;
-     }
+int l,r;
+if(temp==NULL ||temp->left==NULL && temp->right==NULL)
+return 1;
+else{
+if(temp->left)
+l=temp->left->data;
+if(temp->right)
+r=temp->right->data;
+if((temp->data)==(l+r)&&Children_sum(temp->left)&&Children_sum(temp->right))
+return 1;
+else
+return 0;
+}
 }*/
 void mirror_image(struct node*temp){
-  if(temp==NULL)
+    if(temp==NULL)
     return ;
     mirror_image(temp->left);
-   mirror_image(temp->right);
+    mirror_image(temp->right);
     swap(temp->left,temp->right);
 }
 
 void print_Mirror_image(struct node *temp)
 {
-      if(temp==NULL)
-           return ;
-        cout<<temp->data<<" ";
-        print_Mirror_image(temp->left);
-        print_Mirror_image(temp->right);
+    if(temp==NULL)
+    return ;
+    cout<<temp->data<<" ";
+    print_Mirror_image(temp->left);
+    print_Mirror_image(temp->right);
+}
+int hight(struct node *temp){
+    int lh=0,rh=0;
+    if(temp==NULL)
+    return 0;
+    if(temp->left)
+    lh=hight(temp->left);
+    if(temp->right)
+    rh=hight(temp->right);
+    if(lh>rh)
+    return (lh+1);
+    else
+        return (rh+1);
+}
+int diameter(struct node *temp){
+    int lh=0,rh=0,ld=0,rd=0;
+    if(temp==NULL)
+    return 0;
+    if(temp->left)
+    lh=hight(temp->left);
+    if(temp->right)
+    rh=hight(temp->right);
+
+
+    if(temp->left)
+    ld=diameter(temp->left);
+    if(temp->right)
+    rd=diameter(temp->right);
+
+    return (max((lh+rh+1),max(ld,rd)));
 }
 int main(){
     queue<int> st;
-struct node *root=NULL;
+    struct node *root=NULL;
     while(1)
     {
         int a;
         cout<<"If want to terminate the insertion enter :- 0"<<endl;
         cin>>a;
         if(a==0)
-            break;
+        break;
         if(root==NULL)
         {
             root=new_node(a);
         }
         else
         {
-           struct node *temp=root;
-               while(1)
-               {
-                    if(temp->data > a){
+            struct node *temp=root;
+            while(1)
+            {
+                if(temp->data > a){
 
-                        if(temp->left==NULL){
+                    if(temp->left==NULL){
                         temp->left=new_node(a);
                         break;
-                        }
-                        else
-                             temp=temp->left;
-                        }
-                        else if(temp->data < a){
-                        if(temp->right==NULL){
+                    }
+                    else
+                        temp=temp->left;
+                }
+                else if(temp->data < a){
+                    if(temp->right==NULL){
                         temp->right =new_node(a);
                         break;
-                        }
-                        else
-                            temp=temp->right;
-                        }
+                    }
+                    else
+                        temp=temp->right;
                 }
+            }
         }
     }
     cout<<"INORDER TRAVERSAL"<<endl;
@@ -270,16 +311,19 @@ struct node *root=NULL;
     right_view(root,1,&m);
     cout<<endl<<"root-to-leaf"<<endl;
     root_to_leaf(root,st);
-     cout<<endl<<"Spiral_view"<<endl;
-     spiral_trevarsel(root);
-     cout<<endl<<"Maximum_in_tree"<<endl;
-     cout<<max1_tree(root)<<endl;
-  /*   cout<<endl<<"Children_sum"<<endl;
-      if(Children_sum(root))
-            cout<<"true"<<endl;
-      else
-        cout<<"false"<<endl; */
-        mirror_image(root);
-     print_Mirror_image(root);
-return 0;
+    cout<<endl<<"Spiral_view"<<endl;
+    spiral_trevarsel(root);
+    cout<<endl<<"Maximum_in_tree"<<endl;
+    cout<<max1_tree(root)<<endl;
+    /*   cout<<endl<<"Children_sum"<<endl;
+    if(Children_sum(root))
+    cout<<"true"<<endl;
+    else
+    cout<<"false"<<endl; */
+    cout<<endl<<"Diameter of tree"<<endl;
+    cout<< diameter(root)<<endl;
+    cout<<endl<<"Mirror image of tree"<<endl;
+    mirror_image(root);
+    print_Mirror_image(root);
+    return 0;
 }
