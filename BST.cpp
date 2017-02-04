@@ -13,6 +13,7 @@ int cnt=0;
 queue<int>st;
 map<int,bool>mp;
 struct node *temp1=NULL;
+//for New node or data memory allocation
 struct node *new_node(int da){
     struct node *node1;
     node1=(struct node *)malloc(sizeof(struct node));
@@ -21,6 +22,8 @@ struct node *new_node(int da){
     node1->right=NULL;
     return (node1);
 };
+//Inorder Traversal --->>> LEFT ,ROOT ,RIGHT
+//Time complexity ----->>> O(n)
 void print_INORDER(struct node *temp){
     if(temp==NULL)
     return ;
@@ -28,14 +31,19 @@ void print_INORDER(struct node *temp){
     cout<< temp->data <<" ";
     print_INORDER(temp->right);
 }
+
+//preorder Traversal --->>> ROOT,LEFT,RIGHT
+//Time complexity ----->>> O(n)
 void print_PREORDER(struct node *temp){
     if(temp==NULL)
     return ;
     cout<<temp->data<<" ";
     print_PREORDER(temp->left);
     print_PREORDER(temp->right);
-
+    
 }
+//postorder Traversal --->>> LEFT,RIGHT,ROOT
+//Time complexity ----->>> O(n)
 void print_POSTORDER(struct node *temp){
     if(temp==NULL)
     return ;
@@ -43,23 +51,27 @@ void print_POSTORDER(struct node *temp){
     print_POSTORDER(temp->right);
     cout<<temp->data<<" ";
 }
+//It return the number of node in the tree
+//Time complexity ----->> O(n)
 int sizeoftree(struct node *temp){
     if(temp==NULL)
     return 0;
     else
         return  (sizeoftree(temp->left)+1+sizeoftree(temp->right));
 }
+// LEFT,ROOT,RIGHT traversal
+//Time complexity ---->>>O(n)
 void print_DFS(struct node *temp){
     if(temp==NULL)
     return ;
     if(temp->left==NULL&&temp->right==NULL)
     st.push(temp->data);
-
-
     cout<<temp->data<<" ";
     print_DFS(temp->left);
     print_DFS(temp->right);
 }
+//printing the leaf node of tree
+//Time complexity ---->>>O(n)
 void print_leaf(struct node *temp){
     while(!st.empty()){
         cout<<st.front()<<endl;
@@ -116,6 +128,8 @@ void Left_view(struct node *temp,int h1,int *level){
     Left_view(temp->left,h1+1,level);
     Left_view(temp->right,h1+1,level);
 }
+//It return the nodes which can seen by right side
+//Time complexity ---->>> O(n)
 void right_view(struct node *temp,int h1,int *level){
     if(temp==NULL)
     return ;
@@ -126,6 +140,8 @@ void right_view(struct node *temp,int h1,int *level){
     right_view(temp->right,h1+1,level);
     right_view(temp->left,h1+1,level);
 }
+//Printing root to leaf node
+//Time complexity ----->>> O(n)
 void root_to_leaf(struct node *temp,queue<int> st){
     if(temp->left==NULL && temp->right==NULL)
     {
@@ -145,6 +161,7 @@ void root_to_leaf(struct node *temp,queue<int> st){
         root_to_leaf(temp->right,st);
     }
 }
+
 void spiral(struct node *temp,int level,bool it){
     if(temp==NULL)
     return;
@@ -161,6 +178,8 @@ void spiral(struct node *temp,int level,bool it){
         }
     }
 }
+//Spiral traversal of tree
+//Time complexity------------>>>>> O(n*n)
 void spiral_trevarsel(struct node *temp){
     bool it=false;
     for(int i=1;i<=print_hight(temp);i++)
@@ -169,6 +188,8 @@ void spiral_trevarsel(struct node *temp){
         it=!it;
     }
 }
+//Getting greatest element in Binary tree
+//Time complexity ----->>> O(n)
 int max1_tree(struct node *temp){
     if(temp==NULL)
     return 0;
@@ -185,6 +206,7 @@ int max1_tree(struct node *temp){
 //NOT FOR Binary Search Tree (because in BST the node->right->data
 //will always greater than than the root->data so never (node->data!=(node->left->data + node->right->data))
 //Only for Binary tree
+//Time complexity ---->> O(n)
 /*int Children_sum(struct node *temp){
 int l,r;
 if(temp==NULL ||temp->left==NULL && temp->right==NULL)
@@ -207,7 +229,8 @@ void mirror_image(struct node*temp){
     mirror_image(temp->right);
     swap(temp->left,temp->right);
 }
-
+//Mirror Image of tree
+//Time complexity ----->>> o(n)
 void print_Mirror_image(struct node *temp)
 {
     if(temp==NULL)
@@ -216,6 +239,8 @@ void print_Mirror_image(struct node *temp)
     print_Mirror_image(temp->left);
     print_Mirror_image(temp->right);
 }
+//Hight of tree
+//Time complexity------------->>>> O(n)
 int hight(struct node *temp){
     int lh=0,rh=0;
     if(temp==NULL)
@@ -229,6 +254,8 @@ int hight(struct node *temp){
     else
         return (rh+1);
 }
+//Diameter of tree
+// Time complexity ---->> O(n*n) due to 2 time traversal of each node
 int diameter(struct node *temp){
     int lh=0,rh=0,ld=0,rd=0;
     if(temp==NULL)
@@ -237,15 +264,26 @@ int diameter(struct node *temp){
     lh=hight(temp->left);
     if(temp->right)
     rh=hight(temp->right);
-
-
+    
+    
     if(temp->left)
     ld=diameter(temp->left);
     if(temp->right)
     rd=diameter(temp->right);
-
+    
     return (max((lh+rh+1),max(ld,rd)));
 }
+//lowest common ancestor
+//Time complexity ------->> O(hight of tree)
+int LCA(struct node *temp,int a,int b){
+    if(temp->data > max(a,b))
+    return LCA(temp->left,a,b);
+    else if(temp->data < min(a,b))
+    return LCA(temp->right,a,b);
+    else
+        return (temp->data);
+}
+//Driver of the program
 int main(){
     queue<int> st;
     struct node *root=NULL;
@@ -266,7 +304,7 @@ int main(){
             while(1)
             {
                 if(temp->data > a){
-
+                    
                     if(temp->left==NULL){
                         temp->left=new_node(a);
                         break;
@@ -322,6 +360,11 @@ int main(){
     cout<<"false"<<endl; */
     cout<<endl<<"Diameter of tree"<<endl;
     cout<< diameter(root)<<endl;
+    cout<<endl<<"Lowest common ancestor"<<endl;
+    int a,b;
+    cout<<"Enter the value of a,b"<<endl;
+    cin>>a>>b;
+    cout<<LCA(root,a,b)<<endl;
     cout<<endl<<"Mirror image of tree"<<endl;
     mirror_image(root);
     print_Mirror_image(root);
