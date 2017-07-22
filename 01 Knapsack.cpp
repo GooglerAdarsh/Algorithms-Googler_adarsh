@@ -13,7 +13,8 @@ int _01_knapshack(int *val,int *wt,int n,int W){
             dp[i][j]=dp[i-1][j];
        }
     }
-    vector<pair<int,int> > vec;
+  /* Toget itemsets which we take
+  vector<pair<int,int> > vec;
     int j=W;
     for(int i=n;i>0;){
         if(dp[i][j]==dp[i-1][j]){
@@ -28,7 +29,7 @@ int _01_knapshack(int *val,int *wt,int n,int W){
        }
        for(int i=0;i<vec.size();i++){
         cout<<vec[i].first<<" "<<vec[i].second<<endl;
-       }
+       }*/
     return dp[n][W];
 }
 int main(){
