@@ -1,3 +1,5 @@
+// If we will travel only right and down direction then
+// complexity o(n^2) 
 #include<bits/stdc++.h>
 using namespace std;
  int GetNumberOfWays(int n,int m){
