@@ -1,10 +1,11 @@
+//Complexity 2^(n-2)
 #include<bits/stdc++.h>
 using namespace std;
 bool DictionarySearch(string word){
    string dictionary[] = {"mobile","samsung","sam","sung",
                             "man","mango", "icecream","and",
                             "go","i","love","ice","cream"};
-    int n=sizeof(dictionary)/sizeof(word);
+    int n=sizeof(dictionary)/sizeof(dictionary[0]);
     for(int i=0;i<n;i++)
     if(!dictionary[i].compare(word))
         return true;
