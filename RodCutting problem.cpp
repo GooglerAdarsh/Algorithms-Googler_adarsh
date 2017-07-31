@@ -1,3 +1,5 @@
+//In this we assume that the rod cut is start from i to whole length of rod 
+//
 #include<bits/stdc++.h>
 #define ll long long
 using namespace std;
@@ -21,7 +23,7 @@ ll ZerOnenapsack(ll *arr,ll u){
             cout<<dp[i][j]<<" ";
             cout<<endl;
      }
-    return dp[u-1][u];
+    return dp[u][u];
 }
 int main(){
     ll t;
